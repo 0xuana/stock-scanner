@@ -1,0 +1,29 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "stock-scanner"
+version = "0.1.0"
+description = "A simple full-market A-share MACD scanner"
+requires-python = ">=3.11"
+dependencies = [
+  "akshare>=1.17",
+  "dotenv>=0.9.9",
+  "mootdx>=0.11.7",
+  "polars>=1.20",
+  "pyarrow>=15",
+  "requests>=2.31",
+]
+
+[project.optional-dependencies]
+dev = ["pytest>=8"]
+
+[project.scripts]
+a-share-macd-scan = "stock_scanner.scanner:main"
+
+[tool.hatch.build.targets.wheel]
+packages = ["stock_scanner"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
